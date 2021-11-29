@@ -1,4 +1,4 @@
-package com.cropdeals.ApiGetway;
+package com.cropdeals.DealerApi;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,10 +6,10 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 @SpringBootApplication
 @EnableEurekaClient
-public class ApiGetwayApplication {
+public class DealerApiApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ApiGetwayApplication.class, args);
+		SpringApplication.run(DealerApiApplication.class, args);
 	}
 
 }
