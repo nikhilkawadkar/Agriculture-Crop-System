@@ -1,4 +1,4 @@
-package com.cropdeals.CropsAvailable.models;
+package com.cropdeals.Admin.models;
 
 import java.util.ArrayList;
 import java.util.List;

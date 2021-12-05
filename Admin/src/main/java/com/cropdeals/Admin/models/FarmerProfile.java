@@ -1,4 +1,4 @@
-package com.cropdeals.FarmerApi.models;
+package com.cropdeals.Admin.models;
 
 import java.util.List;
 

@@ -36,11 +36,23 @@ public class CropController {
 		return returnAllCrops;		
 	}
  
-	@GetMapping("/findmycrop/{id}")
-	public ReturnAllCrops findmycrop( @PathVariable String id ){
-		returnAllCrops.setListOfCrops(repos.findAllById( id ));
+	@GetMapping("/findmycrop/{farmerId}")
+	public ReturnAllCrops findmycrop( @PathVariable String farmerId ){
+		
+	 
+		returnAllCrops.setListOfCrops(repos.findAllBy1farmerId( farmerId ));
 		return returnAllCrops;
+		
 	}
+	
+	@PutMapping("/buycrop/{id}")
+    public void buyCrop(@RequestBody Crops crop,@PathVariable("id") String id) {
+        crop.setId( id );
+        
+        repos.save(crop);
+      
+  
+    }
 	
 	@PutMapping("/update/{id}")
     public String updateOrder(@RequestBody Crops crop, @PathVariable String id) {

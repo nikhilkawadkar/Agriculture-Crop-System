@@ -1,27 +1,37 @@
 package com.cropdeals.DealerApi.models;
 
+import java.util.List;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.stereotype.Service;
-@Service
+
+@Document
 public class Crops {
 	@Id
 	private String id;
 	private String farmerID;
-	private String cropName; 
+	private String cropName;  
 	private int qty;
-	
-	public Crops() {
-	 
-	}
+	private List<String> dealersId;
   
-	public Crops(String id, String farmerID, String cropName, int qty) {
+	 
+	public Crops(String id, String farmerID, String cropName, int qty, List<String> dealersId) {
 		super();
 		this.id = id;
 		this.farmerID = farmerID;
 		this.cropName = cropName;
 		this.qty = qty;
+		this.dealersId = dealersId;
 	}
+	
+	public List<String> getDealersId() {
+		return dealersId;
+	}
+
+	public void setDealersId(List<String> dealersId) {
+		this.dealersId = dealersId;
+	}
+
 	public String getId() {
 		return id;
 	}

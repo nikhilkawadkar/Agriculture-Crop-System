@@ -8,13 +8,6 @@ import com.cropdeals.FarmerApi.models.FarmerProfile;
 @Service
 public class ProfileServices {
 	
-	List<FarmerProfile> farmerProfiles;
-	 
-	
-	public void addlist(List<FarmerProfile> farmerProfiles) {
-		 this.farmerProfiles = farmerProfiles;
-	}
-	
  
-
+ 
 }

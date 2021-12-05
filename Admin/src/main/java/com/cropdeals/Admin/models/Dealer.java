@@ -1,4 +1,4 @@
-package com.cropdeals.DealerApi.models;
+package com.cropdeals.Admin.models;
 
 import java.util.List;
 
@@ -40,5 +40,5 @@ public class Dealer {
 	public void setSubscriberCrop(List<String> subscriberCrop) {
 		this.subscriberCrop = subscriberCrop;
 	}
- 
+	
 }

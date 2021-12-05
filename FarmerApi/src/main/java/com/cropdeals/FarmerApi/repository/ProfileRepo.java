@@ -10,10 +10,7 @@ import com.cropdeals.FarmerApi.models.FarmerProfile;
  
 @Repository
 public interface ProfileRepo extends MongoRepository<FarmerProfile, String > {
-
-	@Query(value = "{'croptypes.$cType' : ?0 }")
-    List<FarmerProfile> findByUserCropType(String cType);
-	
+ 
 	
 	@Query("{ 'fName' : ?0 }")
 	FarmerProfile findOrdersByName(String fName);
