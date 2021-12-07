@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class ReturnAllCrops {
 
-	List<Crops> listOfCrops = new ArrayList<Crops>();
+	List<Crops> listOfCrops;
 
 	public ReturnAllCrops(List<Crops> listOfCrops) {
 		super();

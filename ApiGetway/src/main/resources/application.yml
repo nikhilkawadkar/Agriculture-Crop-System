@@ -1,6 +1,6 @@
 
 server:
-  port: 8083
+  port: 8084
 
 spring:
   application:
@@ -9,18 +9,18 @@ spring:
     gateway:
       routes:
       - id: dealerapi
-        uri: lb://DealerApi/
+        uri: lb://dealerApi/
         predicates:
         - Path=/dealer/**
       - id: farmerapi 
-        uri: http://localhost:8081/
+        uri: lb://farmerapi/
         predicates:
         - Path=/farmer/**
       - id: cropapi
         uri: lb://crop-avalilable/
         predicates:
         - Path=/crops/**
-      - id: cropapi
-        uri: http://localhost:8089/
+      - id: admin
+        uri: http://admin/
         predicates:
         - Path=/admin/**  

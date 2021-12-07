@@ -10,10 +10,8 @@ import com.cropdeals.CropsAvailable.models.Crops;
 
 @Repository
 public interface CropRepo extends MongoRepository<Crops, String> {
- 
- 
-	@Query("{'farmerID' :?0}")
-	List<Crops> findAllBy1farmerId(String farmerId);
- 
-	
+
+	@Query("{'farmerId' :?0}")
+	List<Crops> findAllByfarmerId(String farmerId);
+ 	
 }

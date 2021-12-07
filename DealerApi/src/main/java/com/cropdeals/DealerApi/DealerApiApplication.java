@@ -16,11 +16,11 @@ public class DealerApiApplication {
 
 	 @Bean
 	 @LoadBalanced
-	   public RestTemplate getRestTemplate() {
-	      return new RestTemplate();
-	   }
-	public static void main(String[] args) {
-		SpringApplication.run(DealerApiApplication.class, args);
-	}
+	 public RestTemplate getRestTemplate() {
+		 return new RestTemplate();
+	 }
+	 public static void main(String[] args) {
+		 SpringApplication.run(DealerApiApplication.class, args);
+	 }
 
 }

@@ -1,7 +1,5 @@
 package com.cropdeals.CropsAvailable.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,59 +11,45 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cropdeals.CropsAvailable.models.Crops;
 import com.cropdeals.CropsAvailable.models.ReturnAllCrops;
-import com.cropdeals.CropsAvailable.repository.CropRepo;
- 
+import com.cropdeals.CropsAvailable.service.CropService;
 
 @RestController
 @RequestMapping("/crops")
 public class CropController {
-
+ 
 	@Autowired
-	CropRepo repos;
-	@Autowired
-	ReturnAllCrops returnAllCrops;
+	private CropService cropService;
 	
 	@PostMapping("/addcrop")
-	public void addCrops( @RequestBody Crops crop ) {
-		repos.insert( crop );
+	public void addCrops(@RequestBody Crops crop) {
+		cropService.addCrop(crop);
 	}
 	
 	@GetMapping("/allcrops")
 	public ReturnAllCrops showAllCrps() {
-		returnAllCrops.setListOfCrops(repos.findAll());
-		return returnAllCrops;		
+		return cropService.showAllCrops();		
 	}
  
 	@GetMapping("/findmycrop/{farmerId}")
 	public ReturnAllCrops findmycrop( @PathVariable String farmerId ){
-		
-	 
-		returnAllCrops.setListOfCrops(repos.findAllBy1farmerId( farmerId ));
-		return returnAllCrops;
-		
+		return cropService.findMyCrop(farmerId);
 	}
 	
 	@PutMapping("/buycrop/{id}")
-    public void buyCrop(@RequestBody Crops crop,@PathVariable("id") String id) {
-        crop.setId( id );
-        
-        repos.save(crop);
-      
-  
+    public void buyCrop(@RequestBody Crops crop, @PathVariable("id") String id) {
+		cropService.buyCrop(crop,id);
     }
 	
-	@PutMapping("/update/{id}")
+	@PutMapping("/updatecrop/{id}")
     public String updateOrder(@RequestBody Crops crop, @PathVariable String id) {
-        crop.setId( id );
-        repos.save(crop);
-        return ("Updated Successfully");
+		cropService.updateCrop(crop,id);
+        return "Updated Successfully";
     }
 		
-	@GetMapping("/delete/{id}")
-	public String deleteOrder( @PathVariable String id )	{
-		repos.deleteById(id);
-		return ("Deleted Successfully");
+	@GetMapping("/deletecrop/{id}")
+	public String deletecrop( @PathVariable String id )	{
+		cropService.deleteCrop(id);
+		return "Deleted Successfully";
 	}
-	
-	
+		
 }

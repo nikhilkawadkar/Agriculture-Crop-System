@@ -10,20 +10,20 @@ public class FarmerProfile {
 	
 	@Id
 	private String id;
-	private int farmerID;
+	private int farmerId;
 	private String fName;
 	private String fPassword;
 	private String fAccountNo;
 	private int rating;
 	private List<Integer> allRatings;
- 
 	
+	public FarmerProfile(){}
 
-	public FarmerProfile(String id, int farmerID, String fName, String fPassword, String fAccountNo, int rating,
+	public FarmerProfile(String id, int farmerId, String fName, String fPassword, String fAccountNo, int rating,
 			List<Integer> allRatings) {
 		super();
 		this.id = id;
-		this.farmerID = farmerID;
+		this.farmerId = farmerId;
 		this.fName = fName;
 		this.fPassword = fPassword;
 		this.fAccountNo = fAccountNo;
@@ -31,12 +31,12 @@ public class FarmerProfile {
 		this.allRatings = allRatings;
 	}
 
-	public int getFarmerID() {
-		return farmerID;
+	public int getFarmerId() {
+		return farmerId;
 	}
 
-	public void setFarmerID(int farmerID) {
-		this.farmerID = farmerID;
+	public void setFarmerId(int farmerID) {
+		this.farmerId = farmerID;
 	}
 	
 	public String getId() {
@@ -87,6 +87,4 @@ public class FarmerProfile {
 		this.allRatings = allRatings;
 	}
 	
-	
- 	
 }

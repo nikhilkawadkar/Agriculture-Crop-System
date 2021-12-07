@@ -18,8 +18,7 @@ import com.cropdeals.DealerApi.models.Dealer;
 import com.cropdeals.DealerApi.models.FarmerProfile;
 import com.cropdeals.DealerApi.models.ReturnAllCrops;
 import com.cropdeals.DealerApi.repository.DealerRepo;
- 
- 
+import com.cropdeals.DealerApi.service.DealerService;
 
 @RestController
 @EnableEurekaClient
@@ -32,69 +31,61 @@ public class DealerController {
 	@Autowired
 	RestTemplate restTemplate;
 	
-	@PostMapping("/addDealer")
-	public void placeOrder( @RequestBody Dealer order ) {
-		repos.insert( order );
+	@Autowired
+	private DealerService dealerService; 
+	
+	@PostMapping("/adddealer")
+	public void addDealer(@RequestBody Dealer dealer) {
+		dealerService.addDealer(dealer);
 	}
 	
-	@GetMapping("/allcrops")
-	public List<Crops>showAllCrops() {
-		ReturnAllCrops allCrops = restTemplate.getForObject("http://crop-avalilable/crops/allcrops", ReturnAllCrops.class);
-		return allCrops.getListOfCrops();
+	@GetMapping("/alldealers")
+	public List<Dealer> showAllDealers() {
+		return dealerService.showAllDealers();	
 	}
 	
-	@GetMapping("/all")
-	public List<Dealer> showAllOrders() {
-		return repos.findAll();		
+	@GetMapping("/finddealer/{dealerName}")
+	public Dealer findDealerByName(@PathVariable String dealerName){
+		return dealerService.findDealerByName(dealerName);
 	}
-	
-	 
-	@GetMapping("/allmycrops/{farmerId}")
-	public String showMyCrops(@PathVariable String farmerId) {
-		return  restTemplate.getForObject("http://crop-avalilable/crops/findmycrop/"+farmerId, String.class);
-	}
-
-	@GetMapping("/finddealer/{itemName}")
-	public Dealer findOrder ( @PathVariable String itemName ){
-		return repos.findOrdersByName( itemName );
-	}
-	
-	
-	
 	
 	@GetMapping("/finddealerbyid/{id}")
 	public Optional<Dealer> finddealerbyid( @PathVariable String id ){
-		return repos.findById( id );
+		return dealerService.findDealerById(id);
 	}
 	
+	@PutMapping("/updatedealer/{id}")
+    public String updateDealer(@RequestBody Dealer dealer, @PathVariable String id) {
+		return dealerService.upsateDealer(dealer,id);
+    }
+		
+	@GetMapping("/deleteDealer/{id}")
+	public String deleteOrder(@PathVariable String id) {
+		return dealerService.deleteDealer(id);
+	}
+	
+	//farmer operations
 	
 	@PutMapping("/giverating/{id}")
-    public String giveRatings(@RequestBody FarmerProfile farmerProfile, @PathVariable String id) {
-	 
-	restTemplate.put("http://FarmerApi/farmer/rating/"+id, farmerProfile);
-	return "rated successfully";
+    public String giveRatings(@RequestBody FarmerProfile farmerProfile, @PathVariable String id) { 
+		return dealerService.giveRating(farmerProfile,id);
     }
+	
+	//Crop operations
+	
+	@GetMapping("/allcrops")
+	public List<Crops>showAllCrops() {
+		return dealerService.showAllCrops();
+	}
 	
 	@PutMapping("/buycrop/{id}")
     public String buycrop(@RequestBody FarmerProfile farmerProfile, @PathVariable String id) {
-	 
-	restTemplate.put("http://localhost:8084/crops/buycrop/"+id, farmerProfile);
-	return "requested successfully";
+		return dealerService.buyCrop(farmerProfile,id);
     }
 	
-	
-	@PutMapping("/update/{id}")
-    public String updateOrder(@RequestBody Dealer dealer, @PathVariable String id) {
-		dealer.setId( id );
-		repos.save(dealer);
-        return ("Updated Successfully");
-    }
-		
-	@GetMapping("/delete/{id}")
-	public String deleteOrder( @PathVariable String id )	{
-		repos.deleteById( id );
-		return ("Deleted Successfully");
+	@GetMapping("/subscribedcropa/{id}")
+	public List<Crops> showSubscribedCrops(@PathVariable String id) {
+		return dealerService.showSubscribedCrops(id);
 	}
-
 	
 }

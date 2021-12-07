@@ -12,33 +12,49 @@ public class Dealer {
 	@Id
 	private String id;
 	private String dealerName;
-	private List<String> subscriberCrop;
+	private String dealerPassword;
+	private List<String> subscribedCrops;
 	
-	
-	public Dealer(String id, String dealerName, List<String> subscriberCrop) {
+	public Dealer(){}
+
+	public Dealer(String id, String dealerName, String dealerPassword, List<String> subscribedCrops) {
 		super();
 		this.id = id;
 		this.dealerName = dealerName;
-		this.subscriberCrop = subscriberCrop;
-	 
+		this.dealerPassword = dealerPassword;
+		this.subscribedCrops = subscribedCrops;
 	}
+
 	public String getId() {
 		return id;
 	}
+
 	public void setId(String id) {
 		this.id = id;
 	}
+
 	public String getDealerName() {
 		return dealerName;
 	}
+
 	public void setDealerName(String dealerName) {
 		this.dealerName = dealerName;
 	}
-	public List<String> getSubscriberCrop() {
-		return subscriberCrop;
+
+	public String getDealerPassword() {
+		return dealerPassword;
 	}
-	public void setSubscriberCrop(List<String> subscriberCrop) {
-		this.subscriberCrop = subscriberCrop;
+
+	public void setDealerPassword(String dealerPassword) {
+		this.dealerPassword = dealerPassword;
 	}
-	
+
+	public List<String> getSubscribedCrops() {
+		return subscribedCrops;
+	}
+
+	public void setSubscribedCrops(List<String> subscribedCrops) {
+		this.subscribedCrops = subscribedCrops;
+	}
+
 }
