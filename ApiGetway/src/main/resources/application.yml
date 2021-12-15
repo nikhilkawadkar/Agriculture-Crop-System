@@ -1,6 +1,9 @@
-
 server:
-  port: 8084
+  port: 8080
+
+eureka:
+  instance:
+    hostname: localhost
 
 spring:
   application:
@@ -9,11 +12,11 @@ spring:
     gateway:
       routes:
       - id: dealerapi
-        uri: lb://dealerApi/
+        uri: http://dealerApi/
         predicates:
         - Path=/dealer/**
-      - id: farmerapi 
-        uri: lb://farmerapi/
+      - id: farmerApi 
+        uri: http://localhost:8082/
         predicates:
         - Path=/farmer/**
       - id: cropapi

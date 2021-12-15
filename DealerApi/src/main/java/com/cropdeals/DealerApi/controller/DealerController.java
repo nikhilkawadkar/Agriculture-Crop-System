@@ -79,8 +79,8 @@ public class DealerController {
 	}
 	
 	@PutMapping("/buycrop/{id}")
-    public String buycrop(@RequestBody FarmerProfile farmerProfile, @PathVariable String id) {
-		return dealerService.buyCrop(farmerProfile,id);
+    public String buycrop(@RequestBody Crops crops, @PathVariable String id) {
+		return dealerService.buyCrop(crops,id);
     }
 	
 	@GetMapping("/subscribedcropa/{id}")

@@ -5,11 +5,11 @@ import java.util.List;
 import org.bouncycastle.jcajce.provider.asymmetric.dsa.DSASigner.stdDSA;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.stereotype.Service;
 
-@Document
+@Service
 public class Dealer {
-
-	@Id
+ 
 	private String id;
 	private String dealerName;
 	private String dealerPassword;

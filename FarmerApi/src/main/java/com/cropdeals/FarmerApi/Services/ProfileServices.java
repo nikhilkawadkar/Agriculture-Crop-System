@@ -93,11 +93,10 @@ public class ProfileServices implements UserDetailsService{
 		try {
 			authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(fName, Password));
 		} catch (Exception e) {
-			return "Error during customer Authentication" + fName;
+			 
+			return e.getLocalizedMessage();
 		}
 		return "Successfully Authenticated customer " + fName;
 	}
 
-	
-	
 }

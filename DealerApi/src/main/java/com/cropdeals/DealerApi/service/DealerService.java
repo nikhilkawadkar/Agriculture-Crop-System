@@ -60,8 +60,8 @@ public class DealerService {
 		return allCrops.getListOfCrops();
 	}
 
-	public String buyCrop(FarmerProfile farmerProfile, String id) {
-		restTemplate.put("http://crop-avalilable/crops/buycrop/"+id, farmerProfile);
+	public String buyCrop(Crops crops, String id) {
+		restTemplate.put("http://crop-avalilable/crops/buycrop/"+id, crops);
 		return "requested to buy";
 	}
 
